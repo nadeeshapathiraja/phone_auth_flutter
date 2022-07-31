@@ -67,6 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '91031806639',
     projectId: 'phone-auth-cc5a8',
     storageBucket: 'phone-auth-cc5a8.appspot.com',
+    androidClientId: '91031806639-qcp577ft648ktob3ceptsutuhf5n3qou.apps.googleusercontent.com',
     iosClientId: '91031806639-5kqvsaact75v2cd0c5lnolbac9i7odd2.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterPhoneAuth',
   );
@@ -77,6 +78,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '91031806639',
     projectId: 'phone-auth-cc5a8',
     storageBucket: 'phone-auth-cc5a8.appspot.com',
+    androidClientId: '91031806639-qcp577ft648ktob3ceptsutuhf5n3qou.apps.googleusercontent.com',
     iosClientId: '91031806639-5kqvsaact75v2cd0c5lnolbac9i7odd2.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterPhoneAuth',
   );

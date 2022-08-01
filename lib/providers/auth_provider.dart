@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_auth/utils/utils.dart';
+import 'package:flutter_phone_auth/views/home_screen.dart';
+import 'package:flutter_phone_auth/views/login_screen.dart';
 import 'package:logger/logger.dart';
 
 class AuthProvider extends ChangeNotifier {
@@ -11,6 +13,11 @@ class AuthProvider extends ChangeNotifier {
   TextEditingController get otpNumber => _otpNumber;
 
   FirebaseAuth auth = FirebaseAuth.instance;
+
+  //.........Store user data
+  final Map<String, dynamic> _userData = {};
+
+  Map<String, dynamic>? get getUserData => _userData;
 
   //Phone number auth set
   Future<void> phoneNumberAuth(BuildContext context) async {
@@ -26,7 +33,7 @@ class AuthProvider extends ChangeNotifier {
 
         //...........Phone number verification Fail
         verificationFailed: (FirebaseAuthException e) {
-          Utils.showSnackbar(context, "Phone Number Error");
+          Utils.showSnackbar(context, e.code);
         },
 
         //............Code sent
@@ -44,6 +51,8 @@ class AuthProvider extends ChangeNotifier {
                 smsCode: smsCode,
               );
 
+              Logger().w("Success");
+
               // Sign the user in (or link) with the credential
               await auth.signInWithCredential(credential).catchError(
                 (e) {
@@ -60,5 +69,22 @@ class AuthProvider extends ChangeNotifier {
     } catch (e) {
       Logger().e(e);
     }
+  }
+
+  //...........initialize user
+  Future<void> initializeUser(BuildContext context) async {
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        Logger().e('User is currently signed out!');
+        Utils.navEgateTo(context, const LoginScreen());
+      } else {
+        Logger().i('User is signed in!');
+        Utils.navEgateTo(context, const HomeScreen());
+      }
+    });
+  }
+
+  Future<void> logOutUser() async {
+    await FirebaseAuth.instance.signOut();
   }
 }

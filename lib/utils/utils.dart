@@ -31,6 +31,7 @@ class Utils {
       builder: (context) => AlertDialog(
         title: const Text("Enter OTP"),
         content: TextField(
+          keyboardType: TextInputType.number,
           controller: otpCodeController,
         ),
         actions: [

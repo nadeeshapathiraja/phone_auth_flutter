@@ -22,6 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextFormField(
+                  keyboardType: TextInputType.number,
                   controller: value.phoneNumber,
                   decoration: const InputDecoration(
                       hintText: "Enter Your Phone Number Ex: 712345678"),

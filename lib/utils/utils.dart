@@ -19,4 +19,27 @@ class Utils {
       ),
     );
   }
+
+  static void showOTPDialog(
+    BuildContext context,
+    TextEditingController otpCodeController,
+    Function() onPressed,
+  ) async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: const Text("Enter OTP"),
+        content: TextField(
+          controller: otpCodeController,
+        ),
+        actions: [
+          TextButton(
+            onPressed: onPressed,
+            child: const Text("Verify"),
+          ),
+        ],
+      ),
+    );
+  }
 }

@@ -64,7 +64,9 @@ class AuthProvider extends ChangeNotifier {
         },
 
         //..........Resend otp code
-        codeAutoRetrievalTimeout: (String verificationId) {},
+        codeAutoRetrievalTimeout: (String verificationId) {
+          Logger().wtf("Time out $verificationId");
+        },
       );
     } catch (e) {
       Logger().e(e);
